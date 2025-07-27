@@ -1,0 +1,36 @@
+name: Auto Commit and Push
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false  # We'll set up our own token
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Make changes (example)
+        run: |
+          # Here you can run scripts to generate files or update things
+          echo "Auto-updated on $(date)" >> update.txt
+
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "initial commit" || echo "No changes to commit"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
