@@ -1,36 +1,55 @@
-name: Auto Commit and Push
+name: Auto Update and Push
 
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main
+
+# Restrict permissions to minimize security risks
+permissions:
+  contents: write  # Required for pushing changes
+  actions: read    # Required for checkout and other actions
 
 jobs:
-  auto-commit:
+  auto-update:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          persist-credentials: false  # We'll set up our own token
+          persist-credentials: true
 
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Make changes (example)
+      - name: Make changes
         run: |
-          # Here you can run scripts to generate files or update things
-          echo "Auto-updated on $(date)" >> update.txt
+          # Example: Append timestamp to a file
+          echo "Auto-updated on $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> update.txt
+          # Add your actual script or commands here
+          
+      - name: Check for changes
+        id: check-changes
+        run: |
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
 
       - name: Commit changes
+        if: steps.check-changes.outputs.has_changes == 'true'
         run: |
           git add .
-          git commit -m "initial commit" || echo "No changes to commit"
+          git commit -m "Auto-update: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
 
       - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
+        if: steps.check-changes.outputs.has_changes == 'true'
+        uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
