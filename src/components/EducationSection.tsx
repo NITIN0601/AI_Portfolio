@@ -35,10 +35,10 @@ const education = [
     cgpa: "9.8/10"
   },
   {
-    degree: "Bachelor of Engineering in Computer Science",
-    specialization: "Software Engineering",
+    degree: "Bachelor of Engineering in Computer Science and Engineering",
+    specialization: "Computer Science and Engineering",
     institution: "RMD Engineering College",
-    location: "Chennai, India",
+    location: "Chennai, TN, India",
     period: "July:2014 – May:2018",
     type: "Undergraduate",
     description: "Comprehensive foundation in computer science principles, software engineering, and programming fundamentals.",
@@ -96,7 +96,7 @@ const EducationSection = () => {
     <section className="py-20 bg-background" id="education">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent"> 
             Education & Academic Background
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -130,21 +130,22 @@ const EducationSection = () => {
                         {edu.institution}
                       </CardDescription>
                     </div>
-                    <div className="flex flex-col lg:items-end gap-2">
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1">
+                      <div className="flex flex-col lg:items-end gap-2 mt-2">
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
                           <Calendar className="w-4 h-4" />
-                          {edu.period}
-                        </span>
-                        <span className="flex items-center gap-1">
+                          <span>{edu.period}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
                           <MapPin className="w-4 h-4" />
-                          {edu.location}
-                        </span>
+                          <span>{edu.location}</span>
+                        </div>
+                        <Badge variant="professional" className="w-fit">
+                          GPA: {edu.gpa}
+                        </Badge>
+                        <Badge variant="professional" className="w-fit">
+                          GPA: {edu.cgpa}
+                        </Badge>
                       </div>
-                      <Badge variant="professional" className="w-fit">
-                        GPA: {edu.gpa}
-                      </Badge>
-                    </div>
                   </div>
                 </CardHeader>
                 
