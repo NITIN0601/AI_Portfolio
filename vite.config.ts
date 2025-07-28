@@ -1,4 +1,3 @@
-// vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -9,6 +8,10 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  preview: {
+    host: "::",
+    port: 4173,
+  },
   plugins: [
     react(),
     mode === "development" && componentTagger(),
@@ -18,7 +21,5 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: mode === "development"
-    ? "/"
-    : "/AI_Portfolio/",
+  base: mode === "development" ? "/" : mode === "production" ? "/AI_Portfolio/" : "/",
 }));
