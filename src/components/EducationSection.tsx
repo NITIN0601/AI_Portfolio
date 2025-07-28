@@ -7,8 +7,8 @@ const education = [
     degree: "Master of Science in Artificial Intelligence",
     specialization: "Machine Learning",
     institution: "University of North Texas",
-    location: "Denton, TX",
-    period: "2021–2023",
+    location: "Denton, TX, USA",
+    period: "Aug:2021 – May:2023",
     type: "Graduate",
     description: "Advanced coursework in machine learning algorithms, deep learning, neural networks, and AI systems design.",
     highlights: [
@@ -18,23 +18,28 @@ const education = [
       "Published research on scalable machine learning architectures"
     ],
     coursework: [
-      "Advanced Machine Learning",
-      "Deep Learning & Neural Networks", 
+      "Machine Learning",
+      "Deep Learning", 
+      "Feature Engineering",
+      "Fundamentals of Artificial Intelligence",
       "Natural Language Processing",
-      "Computer Vision",
-      "Reinforcement Learning",
-      "Statistical Learning Theory",
-      "AI Ethics & Responsible AI",
-      "Distributed Systems"
+      "Big Data, Data Science",
+      "Software Development for AI",
+      "Data Visualization",
+      "Software Engineering",
+      "Empirical Analysis",
+      "AI for Wearables",
+
     ],
-    gpa: "3.9/4.0"
+    gpa: "3.92/4.0",
+    cgpa: "9.8/10"
   },
   {
     degree: "Bachelor of Engineering in Computer Science",
     specialization: "Software Engineering",
     institution: "RMD Engineering College",
     location: "Chennai, India",
-    period: "2014–2018",
+    period: "July:2014 – May:2018",
     type: "Undergraduate",
     description: "Comprehensive foundation in computer science principles, software engineering, and programming fundamentals.",
     highlights: [
@@ -51,9 +56,20 @@ const education = [
       "Computer Networks",
       "Web Technologies",
       "Object-Oriented Programming",
-      "Mathematics for Computing"
+      "Mathematics for Computing",
+
+      "Programming and Data Structures I & II",
+      "Design and Analysis of Algorithms",
+      "Database Management Systems",
+      "Distributed Systems",
+      "Software Engineering",
+      "Information Retrieval",
+      "Internet Programming",
+      "Compiler Design",
+      "Theory of Computation"
     ],
-    gpa: "3.8/4.0"
+    gpa: "3.06/4.0",
+    cgpa: "7.65/10"
   }
 ];
 
@@ -152,12 +168,21 @@ const EducationSection = () => {
                     
                     <div>
                       <h4 className="font-semibold text-foreground mb-3">Key Coursework:</h4>
-                      <div className="grid grid-cols-1 gap-1">
-                        {edu.coursework.map((course, idx) => (
-                          <span key={idx} className="text-sm text-muted-foreground px-2 py-1 rounded hover:bg-accent/50 transition-colors">
-                            {course}
-                          </span>
-                        ))}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+                        <ul className="space-y-1">
+                          {edu.coursework.slice(0, Math.ceil(edu.coursework.length / 2)).map((course, idx) => (
+                            <li key={idx} className="text-sm text-muted-foreground px-2 py-1 rounded hover:bg-accent/50 transition-colors">
+                              {course}
+                            </li>
+                          ))}
+                        </ul>
+                        <ul className="space-y-1">
+                          {edu.coursework.slice(Math.ceil(edu.coursework.length / 2)).map((course, idx) => (
+                            <li key={idx} className="text-sm text-muted-foreground px-2 py-1 rounded hover:bg-accent/50 transition-colors">
+                              {course}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </div>
