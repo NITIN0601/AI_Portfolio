@@ -21,5 +21,5 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: mode === "development" ? "/" : mode === "production" ? "/AI_Portfolio/" : "/",
+  base: mode === 'development' ? '/' : '/AI_Portfolio/',
 }));
