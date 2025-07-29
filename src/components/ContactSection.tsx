@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Linkedin, Github, ExternalLink, Phone, MapPin, Calendar } from "lucide-react";
+import { Mail, Linkedin, Github, ExternalLink, Phone, MapPin, Calendar, Download } from "lucide-react";
 
 const contactMethods = [
   {
@@ -47,10 +47,10 @@ const availability = [
 
 const ContactSection = () => {
   return (
-    <section className="py-20 bg-gradient-secondary" id="contact">
+    <section className="py-20 bg-secondary/30" id="contact">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
             Let's Connect
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -63,7 +63,7 @@ const ContactSection = () => {
             {/* Contact Methods */}
             <Card className="group hover:shadow-glow transition-all duration-500">
               <CardHeader>
-                <CardTitle className="text-2xl group-hover:text-primary transition-colors">
+                <CardTitle className="text-2xl group-hover:text-primary transition-colors text-center">
                   Get In Touch
                 </CardTitle>
                 <CardDescription className="text-base">
@@ -109,7 +109,7 @@ const ContactSection = () => {
             {/* Availability */}
             <Card className="group hover:shadow-glow transition-all duration-500">
               <CardHeader>
-                <CardTitle className="text-2xl group-hover:text-primary transition-colors flex items-center gap-2">
+                <CardTitle className="text-2xl group-hover:text-primary transition-colors flex items-center gap-2 justify-center">
                   <Calendar className="w-6 h-6" />
                   Current Availability
                 </CardTitle>
@@ -147,9 +147,10 @@ const ContactSection = () => {
           </div>
           
           {/* Call to Action */}
-          <Card className="bg-gradient-primary text-primary-foreground border-0 shadow-glow">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4">
+          <div className="relative bg-gradient-hero rounded-lg overflow-hidden shadow-glow">
+            <div className="absolute inset-0 bg-gradient-to-b from-background/10 to-background/30" />
+            <div className="relative z-10 p-8 text-center">
+              <h3 className="text-2xl font-bold mb-4 text-primary-foreground">
                 Ready to Make an Impact
               </h3>
               <p className="text-primary-foreground/90 mb-6 max-w-2xl mx-auto">
@@ -160,7 +161,7 @@ const ContactSection = () => {
                 <Button 
                   variant="secondary" 
                   size="lg" 
-                  className="group"
+                  className="group hover:bg-secondary/80"
                   onClick={() => window.open('mailto:your.email@example.com', '_blank')}
                 >
                   <Mail className="w-5 h-5 mr-2 group-hover:animate-bounce" />
@@ -169,13 +170,15 @@ const ContactSection = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                  className="border-2 border-primary-foreground bg-primary-foreground text-primary hover:bg-primary-foreground/80 hover:text-primary font-semibold shadow-md hover:shadow-glow hover:scale-105 transition-all duration-300 group"
+                  onClick={() => window.open('/resume.pdf', '_blank')}
                 >
+                  <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
                   Download Resume
                 </Button>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
     </section>
